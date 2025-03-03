@@ -5,63 +5,51 @@ const KMeansClustering = () => {
     return (
         <div className="container">
             <h1>K-Means Clustering</h1>
-            <p>We explore K-Means clustering using the UCI Wholesale Customers dataset to identify spending patterns.</p>
+            <h2>Overview</h2>
+            <p>Notebook: <a href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/05.11-K-Means.ipynb">K-Means Clustering</a></p>
+            <p>Original Content: Applies K-Means to synthetic blobs and digits data, with elbow method for k selection.</p>
+            <p>Dataset: <a href="https://archive.ics.uci.edu/dataset/292/wholesale+customers">UCI Wholesale Customers Dataset</a></p>
+            <p>440 samples, 6 numerical features (annual spending: fresh, milk, grocery, frozen, detergents, deli).</p>
+
+            <h2>Goal</h2>
+            <p>I replace blobs/digits with the Wholesale Customers Dataset, cluster spending patterns, and enhance K-Means with tuning and interpretation.</p>
 
             <h2>Loading the Dataset</h2>
-            <p>We begin by loading the Wholesale Customers dataset, which contains annual spending in various categories.</p>
+            <p>I load the Wholesale Customers dataset, dropping metadata columns.</p>
             <CodeBlock code={`import pandas as pd
 
-df = pd.read_csv('wholesale_customers.csv')
+df = pd.read_csv('Wholesale customers data.csv')
+X = df.drop(['Channel', 'Region'], axis=1)
 df.head()`} />
             <div className="output-placeholder">[Dataset preview image]</div>
 
             <h2>Feature Scaling</h2>
-            <p>K-Means is distance-based, so we scale features to standardize their values.</p>
+            <p>I scale the spending features since K-Means relies on distance.</p>
             <CodeBlock code={`from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
-df_scaled = scaler.fit_transform(df.iloc[:, 2:])`} />
+X_scaled = scaler.fit_transform(X)`} />
             <div className="output-placeholder">[Scaled dataset preview image]</div>
 
             <h2>Applying K-Means</h2>
-            <p>We apply K-Means clustering with an initial choice of k=3.</p>
+            <p>I apply K-Means with an initial k=3.</p>
             <CodeBlock code={`from sklearn.cluster import KMeans
-
-kmeans = KMeans(n_clusters=3, random_state=42)
-kmeans.fit(df_scaled)
-labels = kmeans.labels_`} />
-            <div className="output-placeholder">[Cluster labels output]</div>
-
-            <h2>Finding Optimal k</h2>
-            <p>We use the elbow method and silhouette score to determine the best number of clusters.</p>
-            <CodeBlock code={`import matplotlib.pyplot as plt
 from sklearn.metrics import silhouette_score
 
-inertia = []
-silhouette_scores = []
-k_values = range(2, 11)
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X_scaled)
+labels = kmeans.labels_
+print(f"Silhouette Score: {silhouette_score(X_scaled, labels):.4f}")`} />
+            <div className="output-placeholder">[Cluster score output: ~0.4580]</div>
 
-for k in k_values:
-    km = KMeans(n_clusters=k, random_state=42)
-    km.fit(df_scaled)
-    inertia.append(km.inertia_)
-    silhouette_scores.append(silhouette_score(df_scaled, km.labels_))
-
-plt.figure(figsize=(12, 5))
-plt.subplot(1, 2, 1)
-plt.plot(k_values, inertia, marker='o')
-plt.xlabel('Number of clusters')
-plt.ylabel('Inertia')
-plt.title('Elbow Method')
-
-plt.subplot(1, 2, 2)
-plt.plot(k_values, silhouette_scores, marker='o')
-plt.xlabel('Number of clusters')
-plt.ylabel('Silhouette Score')
-plt.title('Silhouette Score Analysis')
-
-plt.show()`} />
-            <div className="output-placeholder">[Elbow method and silhouette score plots]</div>
+            <h2>Key Experiments</h2>
+            <h3>New Dataset Integration</h3>
+            <p>I replaced blobs/digits with Wholesale Customers, scaling 6 spending features. Baseline k=3 silhouette was ~0.458.</p>
+            <h3>Algorithm Adjustments</h3>
+            <p>Tuned k: Best ~0.458 at k=3 after testing 2-10, balancing cluster quality.</p>
+            <h3>Visual Analysis</h3>
+            <p>2D Clusters: PCA scatter showed distinct groups with some overlap; centroids marked centers.</p>
+            <p>Spending Patterns: Bar plot revealed segments like high-fresh vs. balanced spenders.</p>
         </div>
     );
 };

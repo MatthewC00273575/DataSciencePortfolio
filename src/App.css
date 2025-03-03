@@ -1,268 +1,97 @@
-/* src/components/Home.css */
-#intro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-  background: linear-gradient(to right, #e8e7e7, #565555);
-  border-radius: 20px;
-  margin: 30px 120px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+/* src/styles/RetroModernPortfolio.css */
 
-.profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ccc;
-}
+/* Existing styles (abridged) */
+body { font-family: 'Quicksand', sans-serif; background-color: #fdf6e9; color: #4a2c2a; line-height: 1.7; overflow-x: hidden; }
 
-h1 {
-  font-size: 2.5rem;
-  color: #4c4c4c;
-}
+header { position: fixed; top: 0; width: 100%; background: #f4a261; padding: 1rem 0; box-shadow: 0 3px 12px rgba(74, 44, 42, 0.2); z-index: 1000; }
 
-p {
-  font-size: 1.2rem;
-  color: #666;
-}
-/* General styling */
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  margin: 0;
-  background-color: #f0f0f0; /* Light grey background */
-  color: #696969; /* Dark grey text */
-  font-size: 18px;
-  overflow-x: hidden;
-}
+nav ul { display: flex; justify-content: center; list-style: none; }
+nav ul li { margin: 0 1.8rem; }
+nav ul li a { text-decoration: none; color: #4a2c2a; font-weight: 700; text-transform: uppercase; font-size: 1rem; position: relative; transition: color 0.3s ease, transform 0.2s ease; }
+nav ul li a::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -6px; left: 0; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 4"><path fill="none" stroke="%23e76f51" stroke-width="2" d="M0 2 Q 5 0 10 2 Q 15 4 20 2"/></svg>') repeat-x; background-size: 20px 4px; transition: width 0.3s ease; }
+nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
+nav ul li a:hover, nav ul li a.active { color: #e76f51; transform: scale(1.05); }
 
-header {
-  position: fixed;
+section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 5rem 2rem; }
+#intro { background: linear-gradient(to bottom, #f4a261 0%, #fdf6e9 100%); }
+.container { max-width: 950px; margin: 0 auto; padding: 2rem; background: #fff8e1; border-radius: 15px; border: 2px solid #e76f51; box-shadow: 0 5px 15px rgba(74, 44, 42, 0.1); }
+
+h1 { font-size: 2.6rem; color: #4a2c2a; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+h2 { font-size: 1.9rem; color: #8d5524; margin-bottom: 1.5rem; }
+h3 { font-size: 1.3rem; color: #8d5524; }
+p { font-size: 1.1rem; color: #6b4e31; margin-bottom: 1rem; }
+
+/* Portfolio Section */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; /* Generous spacing */
   width: 100%;
-  top: 0;
-  background: rgba(30, 30, 30, 0.9); /* White background with slight transparency */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light grey shadow */
-  z-index: 1000;
-  text-align: center; /* Center-align the header content */
 }
 
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style-type: none;
-  padding: 20px;
-  margin: 0;
+.project-item {
+  background: #fff8e1;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px dashed #f4a261; /* Retro dashed border */
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-nav ul li {
-  margin: 0 20px;
+.project-item:hover {
+  transform: rotate(2deg) translateY(-5px); /* Playful tilt and lift */
+  border-color: #e76f51;
 }
 
-/* General styling for nav links */
-nav ul li a {
+.project-item h3 { margin-bottom: 0.5rem; }
+.project-item p { margin-bottom: 1rem; }
+
+.project-item a {
   text-decoration: none;
-  color: #fefefe;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
+  color: #4a2c2a;
+  font-weight: 600;
+  position: relative;
   transition: color 0.3s ease;
 }
 
-/* Red glow effect when a section is active */
-nav ul li a.active {
-  color: #ff5733; /* Red color */
-  text-shadow: 0 0 8px #ff5733; /* Red glowing effect */
+.project-item a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -4px;
+  left: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 4"><path fill="none" stroke="%23e76f51" stroke-width="2" d="M0 2 Q 5 0 10 2 Q 15 4 20 2"/></svg>') repeat-x;
+  background-size: 20px 4px;
+  transition: width 0.3s ease;
 }
 
+.project-item a:hover::after,
+.project-item a.active::after { width: 100%; }
 
-nav ul li a:hover, nav ul li a.active {
-  color: #c20606; /* Darker red for hover */
-}
-
-/* Section styles */
-/* General section styling */
-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 30px; /* Rounded corners for sections */
-  margin: 30px 0; /* Adds space between sections */
-  margin-top: 70px;
-  margin-left: 120px;
-  margin-right: 120px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
-}
-
-#intro {
-  background: linear-gradient(to right, #e8e7e7, #565555); /* Light grey gradient */
-}
-
-#resume, #portfolio, #skills, #contact {
-  background: #ffffff; /* dark background */
-  color: #222;
-}
-
-h1, h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #4c4c4c; /* dark grey */
-}
-
-h3{
-  color: #333;
-}
-
-p {
-  max-width: 700px;
-  margin: 20px auto;
-  font-size: 1.2rem;
-  color: #666; /* Medium grey for paragraphs */
-}
-
-/* Profile picture */
-.profile-photo {
-  width: 150px; /* Adjust size as needed */
-  height: 150px;
-  border-radius: 50%; /* Make the image round */
-  object-fit: cover;
-  border: 3px solid #ccc; /* Light grey border */
-}
+.project-item a:hover,
+.project-item a.active { color: #e76f51; }
 
 /* Skill Block */
-.skill-block {
-  display: inline-block;
-  margin: 40px;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
+.skill-block { display: inline-block; margin: 20px; text-align: center; transition: transform 0.3s ease-in-out; }
+.skill-block:hover { transform: scale(1.1); }
+.skill-block img { width: 55px; height: 55px; object-fit: contain; }
+
+/* Other existing styles (abridged) */
+.code-block { background: #4a2c2a; color: #fdf6e9; padding: 1.5rem; border-radius: 10px; font-family: 'IBM Plex Mono', monospace; border: 2px dashed #e76f51; margin: 1rem 0; }
+.copy-button { position: absolute; top: 0.5rem; right: 0.5rem; background: #e76f51; color: #fff8e1; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease; }
+.copy-button:hover { background: #d95b43; }
+.output-placeholder { background: #fff8e1; color: #8d5524; padding: 1rem; border-radius: 10px; text-align: center; font-style: italic; margin-top: 0.5rem; border: 1px solid #f4a261; }
+html { scroll-behavior: smooth; }
+
+/* Profile Photo */
+.profile-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 5px solid #f4a261;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
-.skill-block:hover {
-  transform: scale(1.1);
-}
-
-/* Smaller images for skills */
-.skill-block img {
-  width: 80px; /* Smaller size for Java and Python images */
-  height: auto;
-}
-
-/* Contact Form */
-form {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-input, textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-button {
-  background-color: #333; /* Dark grey */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #555; /* Darker grey for hover */
-}
-
-footer {
-  background-color: #222; /* Dark grey background */
-  color: white;
-  text-align: center;
-  padding: 1.5rem;
-  position: relative;
-  width: 100%;
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-h2:hover {
-  color: #8f0808; /* Darker grey when hovered */
-  transition: color 0.3s ease;
-}
-h1:hover {
-  color: #8f0808; /* Darker grey when hovered */
-  transition: color 0.3s ease;
-}
-
-img {
-  max-width: 100%; /* Make the image width relative to its container */
-  height: auto;    /* Maintain aspect ratio */
-}
-
-
-
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-  color: #2c3e50;
-}
-
-p {
-  line-height: 1.6;
-}
-
-/* Code Block Styling */
-.code-block {
-  background: #272822;
-  color: #f8f8f2;
-  padding: 15px;
-  border-radius: 5px;
-  overflow-x: auto;
-  font-family: 'Courier New', monospace;
-  position: relative;
-}
-
-.copy-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.copy-button:hover {
-  background: #2980b9;
-}
-
-/* Output Placeholder */
-.output-placeholder {
-  background: #ecf0f1;
-  color: #7f8c8d;
-  padding: 15px;
-  border-radius: 5px;
-  text-align: center;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-
+.profile-photo:hover { transform: rotate(5deg); }
