@@ -67,8 +67,42 @@ print(f"Baseline k=5 Accuracy: {accuracy_score(y_test, y_pred):.3f}")`} />
             <p>I replaced Iris with Abalone, binarizing rings and encoding sex. Baseline k=5 accuracy was ~77.8%.</p>
             <h3>Algorithm Adjustments</h3>
             <p>Tuned k: Best accuracy ~79.2% at k=11, smoothing the decision boundary.</p>
+            <CodeBlock code={`# Test different k values
+k_values = range(1, 21)
+scores = []
+for k in k_values:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    scores.append(knn.score(X_test, y_test))
+
+# Plot
+import matplotlib.pyplot as plt
+plt.figure(figsize=(8, 5))
+plt.plot(k_values, scores, marker='o')
+plt.xlabel('k'); plt.ylabel('Accuracy')
+plt.title('KNN Accuracy vs. k')
+plt.show()
+
+# Best k
+best_k = k_values[np.argmax(scores)]
+best_knn = KNeighborsClassifier(n_neighbors=best_k)
+best_knn.fit(X_train, y_train)
+y_pred_best = best_knn.predict(X_test)
+print(f"Best k: {best_k}, Accuracy: {accuracy_score(y_test, y_pred_best):.3f}")`} />
+            <div className="image-output-placeholder"><img src="/images/knn-accuracy.png" alt="knn accuracy plot" /></div>
             <h3>Visual Analysis</h3>
             <p>Confusion Matrix: Balanced errors with a slight bias to young (~60% of data).</p>
+            <CodeBlock code={`from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+# Confusion matrix for best k
+cm = confusion_matrix(y_test, y_pred_best, labels=[0, 1])
+disp = ConfusionMatrixDisplay(cm, display_labels=['Young', 'Old'])
+disp.plot(cmap='Blues', values_format='d')
+plt.title('Confusion Matrix for Tuned KNN')
+plt.show()
+
+print(f"Tuned Accuracy: {accuracy_score(y_test, y_pred_best):.3f}")`} />
+            <div className="image-output-placeholder"><img src="/images/knn-confusionmatrix.png" alt="knn confusion matrix" /></div>
             <p>Accuracy vs. k Plot: Showed peak at k=11 after testing 1-20.</p>
         </div>
     );

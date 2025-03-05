@@ -70,12 +70,54 @@ print(classification_report(y_test, y_pred))`} />
             <p>I swapped 20 Newsgroups for Mushrooms, encoding 22 features into 98 binary columns and dropping NaNs. Baseline accuracy reached ~96.6%.</p>
             <h3>Algorithm Adjustments</h3>
             <p>Feature Selection: Used VarianceThreshold (0.01) to reduce dimensionality, maintaining accuracy at ~96.5% with fewer features.</p>
+            <CodeBlock code={`from sklearn.feature_selection import VarianceThreshold
+
+# Remove low-variance features
+selector = VarianceThreshold(threshold=0.01)
+X_train_selected = selector.fit_transform(X_train)
+X_test_selected = selector.transform(X_test)
+
+# Refit model
+model_selected = MultinomialNB(alpha=1.0)
+model_selected.fit(X_train_selected, y_train)
+y_pred_selected = model_selected.predict(X_test_selected)
+
+print(f"Selected Features Accuracy: {accuracy_score(y_test, y_pred_selected):.3f}")`} />
+            <div className="output-placeholder">[Selected features accuracy output: ~0.965]</div>
             <p>Hyperparameter Tuning: Tuned alpha (0.1-2.0), slightly refining performance.</p>
             <h3>Visual Analysis</h3>
             <p>Feature Importance: Bar plot highlighted odor and spore-print-color as top predictors, aligning with mycology.</p>
+            <CodeBlock code={`import matplotlib.pyplot as plt
+
+# Feature importance
+log_probs = model.feature_log_prob_[1]
+feature_names = X_train.columns
+importance = np.abs(model.feature_log_prob_[1] - model.feature_log_prob_[0])
+top_idx = np.argsort(importance)[-10:]
+top_features = feature_names[top_idx]
+top_importance = importance[top_idx]
+
+plt.figure(figsize=(10, 6))
+plt.barh(top_features, top_importance, color='skyblue')
+plt.xlabel('Importance (Abs. Log Prob Difference)')
+plt.title('Top 10 Features Influencing Naive Bayes Predictions')
+plt.tight_layout()
+plt.show()`} />
+            <div className="image-output-placeholder"><img src="/images/nb-featureimportance - Copy.png" alt="feature importance" /></div>
             <p>Confusion Matrix: Heatmap showed ~96.6% accuracy, few false negatives, ensuring safety.</p>
+            <CodeBlock code={`from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred, labels=[0, 1])
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Edible', 'Poisonous'])
+disp.plot(cmap='Blues', values_format='d')
+plt.title('Confusion Matrix for Naive Bayes')
+plt.show()
+
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.3f}")`} />
+            <div className="image-output-placeholder"><img src="/images/NBConfusionMatrix.png" alt="NB confusion matrix" /></div>
         </div>
     );
 };
 
-export default BayesianClassification;
+export default BayesianClassification; 

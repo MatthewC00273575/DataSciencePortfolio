@@ -8,8 +8,10 @@ const Resume = () => (
             <p><strong>BSc (Honors)</strong> in Software Development (Expected 2.2/2.1 GPA)</p>
             <p><strong>Post Leaving Cert (PLC)</strong> in Software Development (2020-2021)</p>
             <ul>
-                <li>Project Management - Distinction</li>
-                <li>Object Oriented Programming - Distinction</li>
+                <li>Distinctions - 7</li>
+                <li>Merit - 1</li>
+                <li>Pass - 1</li>
+                
             </ul>
             <h3>Work Experience</h3>
             <p><strong>Line Leader, Goodfellas Pizza Factory</strong></p>

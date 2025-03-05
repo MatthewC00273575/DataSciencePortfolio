@@ -1,6 +1,5 @@
 /* src/styles/RetroModernPortfolio.css */
 
-/* Existing styles (abridged) */
 body { font-family: 'Quicksand', sans-serif; background-color: #fdf6e9; color: #4a2c2a; line-height: 1.7; overflow-x: hidden; }
 
 header { position: fixed; top: 0; width: 100%; background: #f4a261; padding: 1rem 0; box-shadow: 0 3px 12px rgba(74, 44, 42, 0.2); z-index: 1000; }
@@ -14,7 +13,7 @@ nav ul li a:hover, nav ul li a.active { color: #e76f51; transform: scale(1.05); 
 
 section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 5rem 2rem; }
 #intro { background: linear-gradient(to bottom, #f4a261 0%, #fdf6e9 100%); }
-.container { max-width: 950px; margin: 0 auto; padding: 2rem; background: #fff8e1; border-radius: 15px; border: 2px solid #e76f51; box-shadow: 0 5px 15px rgba(74, 44, 42, 0.1); }
+.container { max-width: 950px; margin:0 auto; margin-top: 100px; padding: 2rem; background: #fff8e1; border-radius: 15px; border: 2px solid #e76f51; box-shadow: 0 5px 15px rgba(74, 44, 42, 0.1); }
 
 h1 { font-size: 2.6rem; color: #4a2c2a; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
 h2 { font-size: 1.9rem; color: #8d5524; margin-bottom: 1.5rem; }
@@ -80,7 +79,26 @@ p { font-size: 1.1rem; color: #6b4e31; margin-bottom: 1rem; }
 .code-block { background: #4a2c2a; color: #fdf6e9; padding: 1.5rem; border-radius: 10px; font-family: 'IBM Plex Mono', monospace; border: 2px dashed #e76f51; margin: 1rem 0; }
 .copy-button { position: absolute; top: 0.5rem; right: 0.5rem; background: #e76f51; color: #fff8e1; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s ease; }
 .copy-button:hover { background: #d95b43; }
-.output-placeholder { background: #fff8e1; color: #8d5524; padding: 1rem; border-radius: 10px; text-align: center; font-style: italic; margin-top: 0.5rem; border: 1px solid #f4a261; }
+.output-placeholder { background: #e6e0cc; color: #7d4a1e; padding: 1rem; border-radius: 10px; text-align: center; font-style: italic; margin-top: 0.5rem; border: 1px solid #f4a261; }
+.image-output-placeholder {
+  background: #e6e0cc; /* Light peach background, matching existing */
+  padding: 1rem; /* Consistent padding */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid #f4a261; /* Orange border */
+  margin-top: 0.5rem; /* Spacing from code block */
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Horizontal center */
+  align-items: center; /* Vertical center */
+  max-width: 100%; /* Prevents overflow */
+  overflow: hidden; /* Ensures image stays within bounds */
+}
+
+.image-output-placeholder img {
+  max-width: 100%; /* Scales image to fit container */
+  max-height: 400px; /* Limits height for consistency, adjust as needed */
+  object-fit: contain; /* Maintains aspect ratio */
+  border-radius: 6px; /* Slight rounding for image edges */
+}
 html { scroll-behavior: smooth; }
 
 /* Profile Photo */
@@ -95,3 +113,4 @@ html { scroll-behavior: smooth; }
 }
 
 .profile-photo:hover { transform: rotate(5deg); }
+
