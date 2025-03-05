@@ -1,5 +1,4 @@
 /* src/styles/RetroModernPortfolio.css */
-
 body { font-family: 'Quicksand', sans-serif; background-color: #fdf6e9; color: #4a2c2a; line-height: 1.7; overflow-x: hidden; }
 
 header { position: fixed; top: 0; width: 100%; background: #f4a261; padding: 1rem 0; box-shadow: 0 3px 12px rgba(74, 44, 42, 0.2); z-index: 1000; }
@@ -71,9 +70,65 @@ p { font-size: 1.1rem; color: #6b4e31; margin-bottom: 1rem; }
 .project-item a.active { color: #e76f51; }
 
 /* Skill Block */
-.skill-block { display: inline-block; margin: 20px; text-align: center; transition: transform 0.3s ease-in-out; }
-.skill-block:hover { transform: scale(1.1); }
-.skill-block img { width: 55px; height: 55px; object-fit: contain; }
+.skill-block {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  position: relative; /* For pseudo-elements or animations */
+  padding: 10px; /* Add some padding for a "card" feel */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.skill-block:hover {
+  transform: scale(1.1) rotate(5deg); /* Scale up and slight tilt */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+  background-color: rgba(240, 248, 255, 0.9); /* Light blue-ish background */
+}
+
+.skill-block img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  transition: filter 0.3s ease-in-out; /* For color effects */
+}
+
+.skill-block:hover img {
+  filter: brightness(1.2) drop-shadow(0 0 5px rgba(0, 255, 255, 0.5)); /* Glow effect */
+}
+
+.skill-block p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+}
+
+.skill-block:hover p {
+  color: #007bff; /* Bright blue text on hover */
+}
+
+/* Add a subtle underline animation for the link */
+.skill-block a {
+  text-decoration: none;
+  position: relative;
+}
+
+.skill-block a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #e76f51; /* Orange underline */
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.skill-block:hover a::after {
+  width: 100%;
+  left: 0; /* Expands from center to full width */
+}
 
 /* Other existing styles (abridged) */
 .code-block { background: #4a2c2a; color: #fdf6e9; padding: 1.5rem; border-radius: 10px; font-family: 'IBM Plex Mono', monospace; border: 2px dashed #e76f51; margin: 1rem 0; }

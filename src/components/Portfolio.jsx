@@ -14,16 +14,6 @@ const Portfolio = () => (
                 <h2>Data Science </h2>
                 <br></br>
                 <div className="project-item">
-                    <h3>Vehicle Fuel Efficiency Prediction</h3>
-                    <p>Machine learning model predicting MPG from car characteristics.</p>
-                    <NavLink to="/fuel-efficiency">View Project Details</NavLink>
-                </div>
-                <div className="project-item">
-                    <h3>Medical Expenses Prediction</h3>
-                    <p>ML model estimating healthcare costs based on lifestyle factors.</p>
-                    <NavLink to="/medical-expenses">View Project Details</NavLink>
-                </div>
-                <div className="project-item">
                     <h3>Bayesian Classification</h3>
                     <p>Naive Bayes classification applied to the UCI Mushroom dataset.</p>
                     <NavLink to="/bayesian-classification">View Project Details</NavLink>
