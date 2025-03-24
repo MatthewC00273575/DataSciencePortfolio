@@ -10,6 +10,7 @@ import BayesianClassification from './components/BayesianClassification';
 import KMeansClustering from './components/KMeansClustering';
 import SupportVectorMachines from './components/SupportVectorMachines';
 import KNearestNeighbors from './components/KNearestNeighbors';
+import ZeroCodeRNN from './components/ZeorCodeRNN';
 import './App.css';
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                     <Route path="/k-means-clustering" element={<KMeansClustering />} />
                     <Route path="/support-vector-machines" element={<SupportVectorMachines />} />
                     <Route path="/k-nearest-neighbors" element={<KNearestNeighbors />} />
+                    <Route path="/zero-code-rnn" element={<ZeroCodeRNN />} />
                 </Routes>
             </main>
             <footer>

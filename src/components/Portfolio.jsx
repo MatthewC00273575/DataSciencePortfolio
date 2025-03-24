@@ -33,6 +33,12 @@ const Portfolio = () => (
                     <p>KNN model classifying abalone age from physical measurements using the UCI Abalone Dataset.</p>
                     <NavLink to="/k-nearest-neighbors">View Project Details</NavLink>
                 </div>
+
+                <div className="project-item">
+                    <h3>Chat-GPT RNN</h3>
+                    <p>RNN model created only using chat-gpt using a custom created dataset.</p>
+                    <NavLink to="/zero-code-rnn">View Project Details</NavLink>
+                </div>
             </div>
         </div>
     </section>

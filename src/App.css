@@ -149,10 +149,45 @@ p { font-size: 1.1rem; color: #6b4e31; margin-bottom: 1rem; }
 }
 
 .image-output-placeholder img {
-  max-width: 100%; /* Scales image to fit container */
-  max-height: 400px; /* Limits height for consistency, adjust as needed */
-  object-fit: contain; /* Maintains aspect ratio */
-  border-radius: 6px; /* Slight rounding for image edges */
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 6px;
+  cursor: pointer; /* Indicates clickable */
+  transition: transform 0.3s ease; /* Smooth scaling */
+}
+
+/* Hover effect for slight tilt, consistent with retro-modern theme */
+.image-output-placeholder img:hover {
+  transform: rotate(2deg); /* Playful tilt like .project-item */
+}
+
+/* Full-size image styling */
+.image-output-placeholder img.full-size {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1); /* Centered, no additional scaling */
+  max-width: 90vw; /* Limits to 90% of viewport width */
+  max-height: 90vh; /* Limits to 90% of viewport height */
+  z-index: 2000; /* Above nav and content */
+  border: 5px solid #f4a261; /* Thick orange border */
+  border-radius: 15px; /* Matches container rounding */
+  background: #fff8e1; /* Light background for padding */
+  padding: 1rem; /* Padding inside border */
+  box-shadow: 0 10px 20px rgba(74, 44, 42, 0.3); /* Deeper shadow */
+}
+
+/* Backdrop for full-size image */
+.image-output-placeholder img.full-size::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(74, 44, 42, 0.7); /* Dark brown overlay with opacity */
+  z-index: -1; /* Behind the image */
 }
 html { scroll-behavior: smooth; }
 
