@@ -16,8 +16,21 @@ const Portfolio = () => (
           >
             GitHub Link
           </a>
-        </div>{" "}
-        <br></br>
+        </div>
+        <div className="project-item">
+          <h3>Personal Finance Traker (React js, FastAPI, Firebase)</h3>
+          <p>
+            Web application designed to empower users to take control of their
+            finances.
+          </p>
+          <a
+            href="https://showcase.setu.ie/C00273575/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read documentation
+          </a>
+        </div>
         <h2>Data Science </h2>
         <br></br>
         <div className="project-item">
